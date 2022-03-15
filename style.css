@@ -14,6 +14,8 @@ body{
 .head h1{
     display: inline;
 }
-.bigmario{
-    width: 100%;
+video{
+    border: 10px;
+    border-radius: 20px;
+    border-style: groove;
 }

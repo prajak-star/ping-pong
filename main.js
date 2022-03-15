@@ -1,5 +1,40 @@
+/*below this was created by Prajakta Mohite */
 
-/*created by prashant shukla */
+wristx=" ";
+wristy=" ";
+score=" ";
+kaisa=" ";
+
+function preload(){
+   chuliya=loadSound("ball_touch_paddel.wav");
+   rehegaya =loadSound("missed.wav"); //#nosympathy//
+}
+
+function setup() {
+	canvas = createCanvas(800,400);
+	canvas.parent("canva");
+	vid=createCapture(VIDEO);
+	vid.size(800,400);
+  vid.hide();
+  console.log("dikh raha hai ? modha game ke piche hai");
+	pwapk=ml5.poseNet(vid);
+	pwapk.on("pose",getem);
+}
+
+function getem (results) {
+	if (results.length>0) {
+		console.log("after results there is a dot , today you look like a beautiful pot ;)");
+		console.log(results);
+		wristx= results[0].pose.rightWrist.x;
+		wristy= results[0].pose.rightWrist.y;
+    score = results[0].pose.keypoint[10].score;
+	}
+}
+
+
+
+/*below this was created by prashant shukla and a little edited by prajakta mohite*/
+//lets goooooooooo//
 
 var paddle2 =10,paddle1=10;
 
@@ -21,14 +56,22 @@ var ball = {
     dy:3
 }
 
-function setup(){
-  var canvas =  createCanvas(700,600);
+function star(){
+  kaisa= "start";
+  document.getElementById("status").innerHTML= " * Game is loading * ";
 }
 
+function rest(){
+  loop();
+  pcscore=0;
+  playerscore=0;
+}
 
 function draw(){
-
+  if (kaisa == "start") {
+     
  background(0); 
+
 
  fill("black");
  stroke("black");
@@ -65,6 +108,7 @@ function draw(){
    
    //function move call which in very important
     move();
+  }
 }
 
 
